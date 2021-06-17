@@ -6,7 +6,7 @@ import { TaskData } from "../types";
 function App() {
   const [name, setName] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
-  const [date, setDate] = useState<string>(new Date().toLocaleDateString());
+  const [date, setDate] = useState<string>(new Date().toLocaleDateString("en-CA"));
   const [color, setColor] = useState<string>("#ff8080");
   const [taskList, setTaskList] = useState<TaskData[]>([]);
 
