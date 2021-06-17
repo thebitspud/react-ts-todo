@@ -4,14 +4,22 @@
 }
 
 .header {
+  font-weight: bold;
   font-size: 2rem;
 }
 
+#task-list {
+  margin: 2rem auto 0 auto;
+  width: min(90%, 40rem);
+}
+
 #next-item {
-  margin: auto;
-  padding: 0.5rem;
-  background-color: darkgray;
+  margin: 2em auto 0 auto;
   width: 20rem;
+}
+
+#next-item .header {
+  margin: 0 0 0.3em 0;
 }
 
 input, textarea {
@@ -49,6 +57,10 @@ input[type="color"] {
   padding: initial;
 }
 
+input[type="color"]:hover {
+  cursor: pointer;
+}
+
 button {
   background-color: white;
   float: right;
@@ -59,14 +71,9 @@ button {
 
 button:hover {
   background-color: whitesmoke;
+  cursor: pointer;
 }
 
 button:active {
   background-color: #e4e4e4;
-}
-
-#task-list {
-  padding: 1em;
-  margin: 1rem auto 0 auto;
-  width: min(90%, 40rem);
 }

@@ -1,0 +1,23 @@
+.Task {
+    position: relative;
+    background-color: white;
+    color: #222222;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 1.5rem 2rem;
+    border-right: white 4rem solid;
+    margin-bottom: 1rem;
+
+    transition-duration: 0.1s;
+}
+
+.Task:hover {
+    transform: scale(1.05);
+}
+
+button.delete {
+    position: absolute;
+    top: 1rem;
+    right: -3rem;
+    width: 2rem;
+    height: 2rem;
+}
