@@ -9,13 +9,13 @@ type TaskProps = {
 
 const Task = (props: TaskProps) => (
   <div className="Task" style={{ borderRightColor: props.task.color }}>
-    <h2 className="header" style={{ margin: 0 }}>
+    <h2 className="task-header" style={{ margin: 0 }}>
       {props.task.name}
     </h2>
     <div>{props.task.desc}</div>
     <br />
-    <div>Due: {props.task.date}</div>
-    <div>Card Color: {props.task.color}</div>
+    <div>{new Date(props.task.date).toDateString()}</div>
+    <div>{props.task.color}</div>
     <button className="delete" onClick={() => props.onComplete(props.task.name)}>
       &#x2715;
     </button>
