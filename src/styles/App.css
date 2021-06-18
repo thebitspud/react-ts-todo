@@ -3,34 +3,45 @@
   color: white;
 }
 
-.header {
-  font-size: 2rem;
-}
-
 #task-list {
   margin: 2rem auto 0 auto;
   width: min(90%, 40rem);
 }
 
 #next-item {
-  margin: 2em auto 0 auto;
+  margin: 2rem auto 0 auto;
   width: 20rem;
 }
 
-#next-item .header {
-  margin: 0 0 0.3em 0;
+#header {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  user-select: none;
+}
+
+#header:hover, .task-header:hover {
+  background: #00000011;
+  cursor: pointer;
+}
+
+#header:active, .task-header:active {
+  background: #0000001B;
 }
 
 input, textarea {
-  padding: 1.5%;
   width: 97%;
   height: 1.5rem;
-  margin-bottom: 0.5rem;
+  font: inherit;
+  font-size: 1rem;
 
   border: none;
   border-radius: 0;
-  font: inherit;
-  font-size: 1rem;
+  padding: 1.5%;
+  margin-bottom: 0.5rem;
+}
+
+input[type="color"]:hover, input[type="date"]:hover {
+  cursor: pointer;
 }
 
 textarea {
@@ -56,10 +67,6 @@ input[type="color"] {
   padding: initial;
 }
 
-input[type="color"]:hover, input[type="date"]:hover {
-  cursor: pointer;
-}
-
 button {
   background-color: white;
   float: right;
@@ -69,10 +76,10 @@ button {
 }
 
 button:hover {
-  background-color: whitesmoke;
+  background: #eeeeee;
   cursor: pointer;
 }
 
 button:active {
-  background-color: #e4e4e4;
+  background: #e0e0e0;
 }

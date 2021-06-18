@@ -6,9 +6,10 @@ import { TaskData } from "../types";
 function App() {
   const [name, setName] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
-  const [date, setDate] = useState<string>(new Date().toLocaleDateString("en-CA"));
+  const [date, setDate] = useState<string>(new Date().toISOString().substr(0, 10));
   const [color, setColor] = useState<string>("#ff8080");
   const [taskList, setTaskList] = useState<TaskData[]>([]);
+  const [showInputs, setShowInputs] = useState<boolean>(true);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     switch (event.target.name) {
@@ -67,6 +68,10 @@ function App() {
     setTaskList(taskList.filter((task) => task.name !== nameToDelete));
   };
 
+  const toggleInputs = () => {
+    setShowInputs(!showInputs);
+  };
+
   return (
     <div className="App">
       <div id="task-list">
@@ -75,37 +80,43 @@ function App() {
         })}
       </div>
       <div id="next-item">
-        <h1 className="header">Add Task</h1>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          placeholder="Task Name"
-          onChange={handleInputChange}
-        />
-        <input
-          type="date"
-          name="date"
-          value={date}
-          placeholder="Due Date"
-          onChange={handleInputChange}
-        />
-        <textarea
-          name="desc"
-          value={desc}
-          placeholder="Description"
-          onChange={handleTextAreaChange}
-        />
-        <div className="split-row">
-          <input
-            type="color"
-            name="color"
-            value={color}
-            placeholder="Task Color"
-            onChange={handleInputChange}
-          />
-          <button onClick={addTask}>Add Item</button>
-        </div>
+        <h1 id="header" onClick={toggleInputs}>
+          Add Task &#9662;
+        </h1>
+        {showInputs ? (
+          <div id="inputs">
+            <input
+              type="text"
+              name="name"
+              value={name}
+              placeholder="Task Name"
+              onChange={handleInputChange}
+            />
+            <input
+              type="date"
+              name="date"
+              value={date}
+              placeholder="Due Date"
+              onChange={handleInputChange}
+            />
+            <textarea
+              name="desc"
+              value={desc}
+              placeholder="Description"
+              onChange={handleTextAreaChange}
+            />
+            <div className="split-row">
+              <input
+                type="color"
+                name="color"
+                value={color}
+                placeholder="Task Color"
+                onChange={handleInputChange}
+              />
+              <button onClick={addTask}>Add Item</button>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
