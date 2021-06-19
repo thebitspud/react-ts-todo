@@ -83,3 +83,12 @@ button:hover {
 button:active {
   background: #e0e0e0;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: lightgray;
+}

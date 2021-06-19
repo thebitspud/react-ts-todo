@@ -2,14 +2,16 @@ import React, { ChangeEvent, useState } from "react";
 import "../styles/App.css";
 import Task from "./Task";
 import { TaskData } from "../types";
+import { useCookies } from "react-cookie";
 
 function App() {
   const [name, setName] = useState<string>("");
   const [desc, setDesc] = useState<string>("");
   const [date, setDate] = useState<string>(new Date().toISOString().substr(0, 10));
   const [color, setColor] = useState<string>("#ff8080");
-  const [taskList, setTaskList] = useState<TaskData[]>([]);
   const [showInputs, setShowInputs] = useState<boolean>(true);
+  const [cookies, setCookies] = useCookies(["tasks"]);
+  const [taskList, setTaskList] = useState<TaskData[]>(cookies.tasks ?? []);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     switch (event.target.name) {
@@ -48,16 +50,12 @@ function App() {
       return;
     }
 
-    const nextTask: TaskData = {
-      name: name,
-      desc: desc,
-      date: date,
-      color: color,
-    };
+    const nextTask: TaskData = { name, desc, date, color };
 
     // Adding nextTask to the existing task list
-    console.log(nextTask);
-    setTaskList([...taskList, nextTask]);
+    const listRef = [...taskList, nextTask];
+    setTaskList(listRef);
+    updateCookies(listRef);
 
     // Resetting input fields
     setName("");
@@ -65,11 +63,19 @@ function App() {
   };
 
   const completeTask = (nameToDelete: string): void => {
-    setTaskList(taskList.filter((task) => task.name !== nameToDelete));
+    // Deleting task
+    const listRef = taskList.filter((task) => task.name !== nameToDelete);
+    setTaskList(listRef);
+    updateCookies(listRef);
   };
 
   const toggleInputs = () => {
     setShowInputs(!showInputs);
+  };
+
+  const updateCookies = (listRef: TaskData[]) => {
+    setCookies("tasks", listRef, { path: "/" });
+    console.log(listRef);
   };
 
   return (
@@ -118,6 +124,12 @@ function App() {
           </div>
         ) : null}
       </div>
+      <p id="footer">
+        This website uses cookies.{" "}
+        <a href="https://github.com/thebitspud/react-ts-todo" target="_blank">
+          Made by Thebitspud (2021).
+        </a>
+      </p>
     </div>
   );
 }
