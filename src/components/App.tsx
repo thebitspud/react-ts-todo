@@ -74,7 +74,7 @@ function App() {
   };
 
   const updateCookies = (listRef: TaskData[]) => {
-    setCookies("tasks", listRef, { path: "/" });
+    setCookies("tasks", listRef, { path: "/", maxAge: 157784630 });
     console.log(listRef);
   };
 
